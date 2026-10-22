@@ -106,6 +106,8 @@ public class MainActivity extends Activity {
         findViewById(R.id.btnHour).setOnClickListener(v -> nextHour());
         findViewById(R.id.btnPick).setOnClickListener(v -> pickTarget());
         findViewById(R.id.btnClear).setOnClickListener(v -> { p.target(0); refresh(); });
+        findViewById(R.id.btnEvents).setOnClickListener(v ->
+                startActivity(new Intent(this, EventListActivity.class)));
         btnStart.setOnClickListener(v -> toggleService());
 
         refresh();

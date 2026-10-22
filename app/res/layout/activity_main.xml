@@ -135,6 +135,13 @@
                 android:text="清除" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btnEvents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="事件列表 · 定时提醒（支持每天/每周重复）" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -240,7 +247,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:lineSpacingExtra="4dp"
-            android:text="使用说明：\n1. 先点「立即校时」，通过 NTP 服务器校准手机时钟偏差（抢购关键，通常能修正几百毫秒误差）。\n2. 设置开售目标时间，选「倒计时模式」，点「启动悬浮窗」。\n3. 小米手机需开启：应用信息→其他权限→「显示悬浮窗」「后台弹出界面」，并把省电策略设为「无限制」防止后台被杀。\n4. 悬浮窗可拖动；点按悬浮窗呼出菜单（校时/穿透/隐藏/退出）。\n5. 开启「触摸穿透」后手指操作完全穿过悬浮窗，不影响在抢购页面的点击。\n6. 最后 10 秒变黄、5 秒变橙、1 秒变红，到点变绿并震动。"
+            android:text="使用说明：\n1. 先点「立即校时」，通过 NTP 服务器校准手机时钟偏差（抢购关键，通常能修正几百毫秒误差）。\n2. 设置开售目标时间，选「倒计时模式」，点「启动悬浮窗」。\n3. 小米手机需开启：应用信息→其他权限→「显示悬浮窗」「后台弹出界面」，并把省电策略设为「无限制」防止后台被杀。\n4. 悬浮窗可拖动；点按悬浮窗呼出菜单（校时/穿透/隐藏/退出）。\n5. 开启「触摸穿透」后手指操作完全穿过悬浮窗，不影响在抢购页面的点击。\n6. 最后 10 秒变黄、5 秒变橙、1 秒变红，到点变绿并震动。\n7. 「事件列表」可预设开售时间（支持每天/每周几重复），到点前 N 分钟收到提醒通知，点通知里「开始倒计时」直接唤起悬浮窗；点击事件行也可手动设为目标。"
             android:textColor="#64748B"
             android:textSize="12sp" />
     </LinearLayout>

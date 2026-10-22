@@ -45,6 +45,7 @@ public class FloatingService extends Service {
     public static final String ACTION_EXIT = "com.milliclock.EXIT";
     public static final String ACTION_APPLY = "com.milliclock.APPLY";
     public static final String ACTION_TOGGLE_PASS = "com.milliclock.TOGGLE_PASS";
+    public static final String ACTION_SET_TARGET = "com.milliclock.SET_TARGET";
 
     public static volatile boolean running = false;
     public static volatile boolean visible = false;
@@ -110,6 +111,16 @@ public class FloatingService extends Service {
         else if (ACTION_HIDE.equals(a)) hide();
         else if (ACTION_EXIT.equals(a)) exit();
         else if (ACTION_TOGGLE_PASS.equals(a)) { p.pass(!p.pass()); applyWindow(); }
+        else if (ACTION_SET_TARGET.equals(a)) {
+            // 通知「开始倒计时」：设为该事件目标并显示悬浮窗
+            long t = intent.getLongExtra("targetMs", 0);
+            if (t > TimeSync.now()) {
+                p.mode(1);
+                p.target(t);
+                firstTick = true;
+            }
+            show();
+        }
         else if (ACTION_APPLY.equals(a)) applyWindow();
         return START_STICKY;
     }
