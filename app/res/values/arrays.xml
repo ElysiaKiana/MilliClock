@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sizes">
+        <item>小 (28sp)</item>
+        <item>中 (42sp)</item>
+        <item>大 (56sp)</item>
+        <item>特大 (72sp)</item>
+    </string-array>
+
+    <string-array name="rates">
+        <item>流畅 (10ms)</item>
+        <item>标准 (20ms)</item>
+        <item>省电 (50ms)</item>
+    </string-array>
+</resources>

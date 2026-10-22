@@ -1,0 +1,15 @@
+# 构建产物
+obj/
+*.apk
+*.apk.idsig
+
+# 签名密钥（隐私，勿上传）
+keystore.jks
+*.jks
+*.keystore
+
+# IDE / 系统
+.vscode/
+.idea/
+*.log
+Thumbs.db
