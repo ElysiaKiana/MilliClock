@@ -1,3 +1,10 @@
+# Gradle / Android Studio
+.gradle/
+build/
+local.properties
+.idea/
+*.iml
+
 # 构建产物
 obj/
 *.apk
@@ -10,6 +17,5 @@ keystore.jks
 
 # IDE / 系统
 .vscode/
-.idea/
 *.log
 Thumbs.db

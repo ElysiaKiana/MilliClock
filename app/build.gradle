@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.application'
+}
+
+// 签名沿用原来 build.ps1 的 keystore.jks，保证能覆盖安装之前的版本
+def ksFile = rootProject.file('keystore.jks')
+
+android {
+    namespace 'com.milliclock'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.milliclock"
+        minSdk 26
+        targetSdk 34
+        versionCode 2
+        versionName "1.1"
+    }
+
+    signingConfigs {
+        release {
+            if (ksFile.exists()) {
+                storeFile ksFile
+                storePassword 'milliclock123'
+                keyAlias 'milliclock'
+                keyPassword 'milliclock123'
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+}
