@@ -3,7 +3,6 @@ package com.milliclock;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -184,13 +183,13 @@ public class EventListActivity extends Activity {
     }
 
     private void pickTime(final String name, final Calendar c) {
-        new TimePickerDialog(this, (tp, hh, mm) -> {
+        TimePickDialog.show(this, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), (hh, mm) -> {
             c.set(Calendar.HOUR_OF_DAY, hh);
             c.set(Calendar.MINUTE, mm);
             c.set(Calendar.SECOND, 0);
             c.set(Calendar.MILLISECOND, 0);
             pickRemind(name, c);
-        }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true).show();
+        });
     }
 
     private void pickRemind(final String name, final Calendar c) {

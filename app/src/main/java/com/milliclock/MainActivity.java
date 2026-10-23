@@ -4,7 +4,6 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -211,12 +210,12 @@ public class MainActivity extends Activity {
             c.set(Calendar.YEAR, y);
             c.set(Calendar.MONTH, m);
             c.set(Calendar.DAY_OF_MONTH, d);
-            new TimePickerDialog(this, (tp, hh, mm) -> {
+            TimePickDialog.show(this, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), (hh, mm) -> {
                 c.set(Calendar.HOUR_OF_DAY, hh);
                 c.set(Calendar.MINUTE, mm);
                 c.set(Calendar.SECOND, 0);
                 askMs(c);
-            }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true).show();
+            });
         }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
     }
 
