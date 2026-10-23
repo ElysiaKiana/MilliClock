@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -193,11 +194,37 @@ public class EventListActivity extends Activity {
     }
 
     private void pickRemind(final String name, final Calendar c) {
-        final int[] mins = {0, 1, 5, 10, 30};
         new AlertDialog.Builder(this)
                 .setTitle("提前提醒（事件开始前）")
-                .setItems(new String[]{"不提醒", "提前 1 分钟", "提前 5 分钟", "提前 10 分钟", "提前 30 分钟"},
-                        (d, w) -> pickRepeat(name, c, mins[w]))
+                .setItems(new String[]{"不提醒", "提前 1 分钟", "提前 3 分钟", "提前 5 分钟", "自定义…"},
+                        (d, w) -> {
+                            if (w == 0) pickRepeat(name, c, 0);
+                            else if (w == 1) pickRepeat(name, c, 1);
+                            else if (w == 2) pickRepeat(name, c, 3);
+                            else if (w == 3) pickRepeat(name, c, 5);
+                            else askCustomRemind(name, c);
+                        })
+                .show();
+    }
+
+    /** 自定义提前提醒分钟数（1 - 1440，即最多提前一天） */
+    private void askCustomRemind(final String name, final Calendar c) {
+        final EditText et = new EditText(this);
+        et.setInputType(InputType.TYPE_CLASS_NUMBER);
+        et.setHint("1 - 1440 分钟");
+        new AlertDialog.Builder(this)
+                .setTitle("自定义提前提醒")
+                .setView(et)
+                .setPositiveButton("下一步", (d, w) -> {
+                    int min = 0;
+                    try { min = Integer.parseInt(et.getText().toString()); } catch (Exception ignore) { }
+                    if (min < 1 || min > 1440) {
+                        Toast.makeText(this, "请输入 1 - 1440 之间的分钟数", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    pickRepeat(name, c, min);
+                })
+                .setNegativeButton("取消", null)
                 .show();
     }
 
